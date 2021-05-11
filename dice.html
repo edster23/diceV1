@@ -1,0 +1,142 @@
+<html>
+<head>
+	<style>
+		h1 { text-align: center;}
+		#gameContainer {}
+		body {
+		  background: #111;
+		  color: #f8f8f8;
+		}
+		canvas {
+		  background: #f8f8f8;
+		  padding: 0;
+		  margin: 0 auto;
+		  margin-bottom: 1rem;
+		  display: block;
+		}
+	</style>
+	<script type="text/javascript">
+		const DIE_SIDES = 6;
+		var result = 0;
+
+		document.addEventListener('DOMContentLoaded', init)
+
+		function rollDice() {
+			var num = Math.floor((Math.random() * DIE_SIDES) + 1);
+			document.getElementById('diceNum').innerHTML = num;
+			return num;
+		}
+
+		function init() {
+			var number = rollDice();
+			console.log('Dice rolled ' + number);
+
+			canvas = document.getElementById('gameCanvas');
+			ctx = canvas.getContext('2d');
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+			if(number == 1) {
+				drawDice(50, 35, ctx);
+				drawDotsOne(50, 35, 50, ctx);
+			}
+
+			if(number == 2) {
+				drawDice(50, 35, ctx);
+				drawDotsTwo(50, 35, 50, ctx);
+			}
+
+			if(number == 3) {
+				drawDice(50, 35, ctx);
+				drawDotsThree(50, 35, 50, ctx);
+			}
+
+			if(number == 4) {
+				drawDice(50, 35, ctx);
+				drawDotsFour(50, 35, 50, ctx);
+			}
+
+			if(number == 5) {
+				drawDice(50, 35, ctx);
+				drawDotsFive(50, 35, 50, ctx);
+			}
+
+			if(number == 6) {
+				drawDice(50, 35, ctx);
+				drawDotsSix(50, 35, 50, ctx);
+			}
+			// drawDiceDot(65, 50, ctx);
+			// drawDiceDot(80, 50, ctx);
+			// drawDiceDot(65, 65, ctx);
+			// drawDiceDot(80, 65, ctx);
+			// drawDiceDot(65, 80, ctx);
+			// drawDiceDot(80, 80, ctx);
+		}
+		function drawDice(x, y, ctx) {
+			ctx.strokeStyle = 'black';
+			ctx.fillStyle = 'black';
+
+			ctx.beginPath();
+			ctx.fillRect(x, y, 50, 50);
+		}
+		function drawDotsOne(diceCornerX, diceCornerY, width, ctx) {
+			drawDiceDot(diceCornerX + 26, diceCornerY + 25, ctx);
+		}
+		function drawDotsTwo(diceCornerX, diceCornerY, width, ctx) {
+			drawDiceDot(diceCornerX + 17, diceCornerY + 12, ctx);
+			drawDiceDot(diceCornerX + 35, diceCornerY + 38, ctx);
+		}		
+		function drawDotsThree(diceCornerX, diceCornerY, width, ctx) {
+			drawDiceDot(diceCornerX + 17, diceCornerY + 12, ctx);
+			drawDiceDot(diceCornerX + 26, diceCornerY + 25, ctx);
+			drawDiceDot(diceCornerX + 35, diceCornerY + 38, ctx);
+		}
+		function drawDotsFour(diceCornerX, diceCornerY, width, ctx) {
+			drawDiceDot(diceCornerX + 17, diceCornerY + 12, ctx);
+			drawDiceDot(diceCornerX + 35, diceCornerY + 12, ctx);
+			drawDiceDot(diceCornerX + 17, diceCornerY + 38, ctx);
+			drawDiceDot(diceCornerX + 35, diceCornerY + 38, ctx);
+		}
+		function drawDotsFive(diceCornerX, diceCornerY, width, ctx) {
+			drawDiceDot(diceCornerX + 17, diceCornerY + 12, ctx);
+			drawDiceDot(diceCornerX + 35, diceCornerY + 12, ctx);
+			drawDiceDot(diceCornerX + 26, diceCornerY + 25, ctx);
+			drawDiceDot(diceCornerX + 17, diceCornerY + 38, ctx);
+			drawDiceDot(diceCornerX + 35, diceCornerY + 38, ctx);
+		}
+		function drawDotsSix(diceCornerX, diceCornerY, width, ctx) {
+			drawDiceDot(diceCornerX + 17, diceCornerY + 10, ctx);
+			drawDiceDot(diceCornerX + 35, diceCornerY + 10, ctx);
+			drawDiceDot(diceCornerX + 17, diceCornerY + 25, ctx);
+			drawDiceDot(diceCornerX + 35, diceCornerY + 25, ctx);
+			drawDiceDot(diceCornerX + 17, diceCornerY + 40, ctx);
+			drawDiceDot(diceCornerX + 35, diceCornerY + 40, ctx);
+		}
+		function drawDiceDot(x, y, ctx) {
+			ctx.strokeStyle = 'white';
+			ctx.fillStyle = 'red';
+
+			ctx.beginPath();
+			ctx.arc(x, y, 5, 0, 2 * Math.PI, false); // full circle
+			ctx.fill();
+			ctx.stroke();
+		}
+
+
+	</script>
+	
+</head>
+<body>
+	Here is the roll: <span id="diceNum"></span>
+	<br/><br/>
+	<h1><u><i>Deshaun is awesome!</i></u></h1>
+	<div id="gameContainer">
+	  <canvas
+	     id="gameCanvas"
+	     width="600"
+	     height="125"
+	  />
+	</div>
+	<button onclick="init()">Roll</button>
+	<br/><br/>
+</body>
+</html>
